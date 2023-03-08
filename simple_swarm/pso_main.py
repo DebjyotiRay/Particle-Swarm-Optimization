@@ -1,5 +1,6 @@
 from SwarmEnv.PSOEnv import PSOEnv
 
+
 def main():
     swarm = PSOEnv(3, 0.002, 0.001, 1.0)
     epoch = 0
