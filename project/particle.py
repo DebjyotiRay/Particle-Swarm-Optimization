@@ -43,7 +43,7 @@ class Particle:
         circle(window, x,y, red)
         self.fitness = math.sqrt((x-targetx)**2 + (y-targety)**2)
         self.set_pbest()
-        self.set_velocity(gbest_position, gbest_value, swarm)
+        self.set_velocity(gbest_position)
 
     def set_pbest(self):
         if self.fitness< self.pbest_value:
