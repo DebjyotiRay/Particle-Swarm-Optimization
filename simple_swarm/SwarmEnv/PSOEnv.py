@@ -11,7 +11,7 @@ class PSOEnv:
         self.inertia = w
         self.cognitive_weight = c1
         self.social_weight = c2
-        self.G_best_pos = np.array((0, 0))
+        self.G_best_pos = np.array([0, 0])
         self.G_best_val = np.inf
         self.G_best_id = None
         self.convergence_criteria = False
