@@ -1,5 +1,5 @@
 import numpy as np
-
+import math
 class PSOAgent:
     def __init__(self, idx, position):
         self.agent_id = idx
@@ -24,7 +24,7 @@ class PSOAgent:
             
             cog_dist = self.P_best_pos[i]-self.position[i]
             soc_dist = swarm.G_best_pos[i]-self.position[i]
-            vel = swarm.inertia*v_t[i] + swarm.cognitive_weight*r1*cog_dist + swarm.social_weight*r2*soc_dist
+            vel = swarm.inertia*v_t[i] + swarm.cognitive_weight*r1*math.sqrt(cog_dist) + swarm.social_weight*r2*math.sqrt(soc_dist)
             
             if vel > self.max_velocity:
                 vel = self.max_velocity

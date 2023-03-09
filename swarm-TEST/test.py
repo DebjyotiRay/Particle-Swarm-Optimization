@@ -28,7 +28,7 @@ win_height = 800
 win_width = 800
 window = pygame.display.set_mode((win_width, win_height))
 pygame.display.set_caption("PSO Treasure Hunt Visualization")
-green = (0, 255, 0)
+green = (0, 0, 255)
 red = (255, 0, 0)
 
 # PSO attributes
