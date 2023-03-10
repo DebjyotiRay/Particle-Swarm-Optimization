@@ -1,9 +1,16 @@
+import numpy as np
+
 from PSOEnv import PSOEnv
 from PSOAgent import PSOAgent
 
-
+#Setting few more parameters:
+d=10
+xMin,xMax=-100,100
+vMin, vMax=-0.2*(xMax-xMin),0.2*(xMax-xMin)
+MaxIt=3000
+w=0.9-(0.5/MaxIt)*np.linspace(0,MaxIt,MaxIt)
 def main():
-    swarm = PSOEnv(3, 0.002, 0.001, 1.0)#number_of_agents ,inertia, cognitive weight, social weight
+    swarm = PSOEnv(3, w, 2.0, 1.0)#number_of_agents ,inertia, cognitive weight, social weight
     #cognitive weight gives the current based location; and its coordinates/
     #social weight gives the 
 
