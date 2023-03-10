@@ -91,8 +91,10 @@ def update(particle_list, targetx, targety):
     pygame.display.update()
 
 def objective_function(self, position):
-    x = -self.screen_width / 2 + position[0]
-    y = -self.screen_height / 2 + position[1]
+    # x = -self.screen_width / 2 + position[0]
+    # y = -self.screen_height / 2 + position[1]
+    x=position[0]
+    y = position[1]
     return x ** 2 + y ** 2
 
 def find_global_best(self):

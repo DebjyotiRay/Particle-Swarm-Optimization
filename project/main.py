@@ -21,7 +21,7 @@ def running():
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 targetx, targety = pygame.mouse.get_pos()
-                pygame.draw.circle(window, red, [targetx, targety], 5)
+                pygame.draw.circle(window, red, (targetx, targety), 5)
                 run = True
 
     while run:
