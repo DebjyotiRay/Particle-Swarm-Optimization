@@ -90,6 +90,22 @@ def update(particle_list, targetx, targety):
 
     pygame.display.update()
 
+def objective_function(self, position):
+    x = -self.screen_width / 2 + position[0]
+    y = -self.screen_height / 2 + position[1]
+    return x ** 2 + y ** 2
+
+def find_global_best(self):
+    min_val = self.PSOAgents[0].fitness_value
+    min_id = self.PSOAgents[0].agent_id
+    min_pos = self.PSOAgents[0].position
+    for i in range(1, self.no_agents):
+        if min_val > self.PSOAgents[i].fitness_value:
+            min_val = self.PSOAgents[i].fitness_value
+            min_id = self.PSOAgents[i].agent_id
+            min_pos = self.PSOAgents[i].position
+    return min_pos, min_val, min_id
+
 
 def main():
     particle_list = [Particle() for _ in range(10)]
