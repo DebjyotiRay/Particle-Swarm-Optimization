@@ -41,6 +41,8 @@ class Particle:
         # pygame.draw.polygon(window, blue, ((x, y + 10), (x - 5, y), (x + 5, y)))
         self.bound()
         circle(window, x,y, red)
+        # pygame.draw.circle(window, red,
+        #                    (x, y), 3)
         self.fitness = math.sqrt((x-targetx)**2 + (y-targety)**2)
         self.set_pbest()
         self.set_velocity(gbest_position)

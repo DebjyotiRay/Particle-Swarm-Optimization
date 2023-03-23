@@ -1,11 +1,4 @@
 # PSO-Visualization
-# Simple visualization of how the Particle Swarm Optimization algorithm works using pygame.
-
-# https://medium.com/analytics-vidhya/implementing-particle-swarm-optimization-pso-algorithm-in-python-9efc2eb179a6
-# And
-# https://towardsdatascience.com/particle-swarm-optimisation-in-machine-learning-b01b1d2ad8a8
-
-
 import pygame
 import random as rd
 import math
@@ -17,7 +10,7 @@ pygame.init()
 win_height = 800
 win_width = 800
 window = pygame.display.set_mode((win_width, win_height))
-pygame.display.set_caption("PSO Treasure Hunt Visualization")
+pygame.display.set_caption("PSO target Hunt Visualization")
 green = (0, 0, 255)
 red = (255, 0, 0)
 
@@ -37,14 +30,14 @@ class Particle():
         self.velocity = np.array([0, 0])
         self.fitness = float('inf')
 
-    def step(self, treasurex, treasurey, gbest_position, gbest_value):
+    def step(self, targetx, targety, gbest_position, gbest_value):
         self.position = self.position + self.velocity
         x = self.position[0]
         y = self.position[1]
         self.bound()
         pygame.draw.polygon(window, green, ((x, y + 10), (x - 5, y), (x + 5, y)))
 
-        self.fitness = math.sqrt((x - treasurex) ** 2 + (y - treasurey) ** 2)
+        self.fitness = math.sqrt((x - targetx) ** 2 + (y - targety) ** 2)
         self.set_pbest()
         self.set_velocity(gbest_position, gbest_value)
 
@@ -84,21 +77,36 @@ class Particle():
         self.fitness = float('inf')
 
 
-def update(particle_list, treasurex, treasurey):
+def update(particle_list, targetx, targety):
     closest_particle = min(particle_list, key=attrgetter('fitness'))
     gbest_value = closest_particle.fitness
     gbest_position = closest_particle.position
 
     window.fill((0, 0, 0))
-    pygame.draw.circle(window, red, [treasurex, treasurey], 5)
+    pygame.draw.circle(window, red, [targetx, targety], 5)
 
     for particle in particle_list:
-        particle.step(treasurex, treasurey, gbest_position, gbest_value)
+        particle.step(targetx, targety, gbest_position, gbest_value)
 
-    # self.trajectory.append((x, y))
-    # for i in range(len(self.trajectory) - 1):
-    #     pygame.draw.line(screen, self.trajec_color, self.trajectory[i], self.trajectory[i + 1], 2)
     pygame.display.update()
+
+def objective_function(self, position):
+    # x = -self.screen_width / 2 + position[0]
+    # y = -self.screen_height / 2 + position[1]
+    x=position[0]
+    y = position[1]
+    return x ** 2 + y ** 2
+
+def find_global_best(self):
+    min_val = self.PSOAgents[0].fitness_value
+    min_id = self.PSOAgents[0].agent_id
+    min_pos = self.PSOAgents[0].position
+    for i in range(1, self.no_agents):
+        if min_val > self.PSOAgents[i].fitness_value:
+            min_val = self.PSOAgents[i].fitness_value
+            min_id = self.PSOAgents[i].agent_id
+            min_pos = self.PSOAgents[i].position
+    return min_pos, min_val, min_id
 
 
 def main():
@@ -108,27 +116,25 @@ def main():
     while not run:
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
-                treasurex, treasurey = pygame.mouse.get_pos()
-                pygame.draw.circle(window, red, [treasurex, treasurey], 5)
-
-
+                targetx, targety = pygame.mouse.get_pos()
+                pygame.draw.circle(window, red, [targetx, targety], 5)
                 run = True
 
     while run:
         pygame.time.delay(100)  # 60fps
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                run = False
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                treasurex, treasurey = pygame.mouse.get_pos()
-                for particle in particle_list:
-                    particle.reset()
-
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
-                    run = False
-
-        update(particle_list, treasurex, treasurey)
+        # for event in pygame.event.get():
+        #     if event.type == pygame.QUIT:
+        #         run = False
+        #     if event.type == pygame.MOUSEBUTTONDOWN:
+        #         targetx, targety = pygame.mouse.get_pos()
+        #         for particle in particle_list:
+        #             particle.reset()
+        #
+        #     if event.type == pygame.KEYDOWN:
+        #         if event.key == pygame.K_ESCAPE:
+        #             run = False
+        targetx=
+        update(particle_list, targetx, targety)
 
     pygame.quit()
     quit()
